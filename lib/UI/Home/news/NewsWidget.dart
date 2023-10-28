@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/model/News.dart';
+import 'package:news_app/NewsResponse/News.dart';
+
 
 class NewsWidget extends StatelessWidget {
   News news;
@@ -14,17 +16,22 @@ class NewsWidget extends StatelessWidget {
         children: [
           ClipRRect(
               borderRadius: BorderRadius.circular(18),
-              child: Image.asset(news.image,
-              height: 220,
+              child:CachedNetworkImage(
+                imageUrl: news.urlToImage??'',
+                height: 220,
                 width: double.infinity,
                 fit: BoxFit.fill,
-              )),
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
+          ),
           Text.rich(
             textAlign: TextAlign.start,
             TextSpan(
               children: [
                 TextSpan(
-                  text: news.author,
+                  text: news.author??'',
                   style: TextStyle(
                     color: Color(0xFF79828B),
                     fontSize: 10,
@@ -35,7 +42,7 @@ class NewsWidget extends StatelessWidget {
               ],
             ),
           ),
-          Text(news.title,
+          Text(news.title??'',
             textAlign: TextAlign.start,
             style: TextStyle(
             color: Color(0xFF42505C),
@@ -43,7 +50,7 @@ class NewsWidget extends StatelessWidget {
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w500,
           ),),
-          Text(news.date,
+          Text(news.publishedAt??'',
             style: TextStyle(
             color: Color(0xFFA3A3A3),
             fontSize: 13,

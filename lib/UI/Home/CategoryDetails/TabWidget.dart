@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/model/Source.dart';
+import 'package:news_app/SourcesResponse/Source.dart';
+
 
 class TabWidget extends StatelessWidget {
   Source source;
@@ -18,7 +19,7 @@ class TabWidget extends StatelessWidget {
         color: isSelected? Theme.of(context).primaryColor:Colors.white,
         border: Border.all(color: Theme.of(context).primaryColor,width: 2)
       ),
-      child: Text(source.name,
+      child: Text(source.name??'',
         style: TextStyle(
           color: isSelected? Colors.white:Theme.of(context).primaryColor,
           fontSize: 14,
