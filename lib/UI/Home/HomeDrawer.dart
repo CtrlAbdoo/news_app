@@ -4,7 +4,7 @@ typedef OnMenuItemClick = void Function(MenuItem clickedItemPos);
 class HomeDrawer extends StatelessWidget {
   OnMenuItemClick onMenuItemClick;
 
-  HomeDrawer(this.onMenuItemClick);
+  HomeDrawer(this.onMenuItemClick, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +16,11 @@ class HomeDrawer extends StatelessWidget {
           children: [
             Container(
               alignment: Alignment.center,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 vertical: 48,
               ),
               color: Theme.of(context).primaryColor,
-              child: Text.rich(
+              child: const Text.rich(
                 TextSpan(
                   children: [
                     TextSpan(
@@ -40,8 +40,8 @@ class HomeDrawer extends StatelessWidget {
               onTap: (){
                 onMenuItemClick(MenuItem.categories);
               },
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 15,top: 25),
+              child: const Padding(
+                padding: EdgeInsets.only(bottom: 15,top: 25),
                 child: Row(
                   children: [
                     Icon(Icons.view_list_rounded ,size: 34,),
@@ -63,8 +63,8 @@ class HomeDrawer extends StatelessWidget {
               onTap: (){
                 onMenuItemClick(MenuItem.settings);
               },
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 15),
+              child: const Padding(
+                padding: EdgeInsets.only(bottom: 15),
                 child: Row(
                   children: [
                     Icon(Icons.settings_rounded ,size: 34,),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/API/ApiManager.dart';
 import 'package:news_app/SourcesResponse/Source.dart';
+import 'package:news_app/UI/Home/news/NewsListViewModel.dart';
 import 'package:news_app/UI/Home/news/NewsWidget.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -14,32 +15,40 @@ class NewsListWidget extends StatefulWidget {
 }
 
 class _NewsListWidgetState extends State<NewsListWidget> {
+  var viewModel = NewsListViewModel();
+  @override
+  void initState() {
+    super.initState();
+    viewModel.getNews(widget.source.id??'');
+  }
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: ApiManager.getNews(widget.source.id!),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+    return ChangeNotifierProvider(
+      create: (context) => viewModel,
+      child: Consumer<NewsListViewModel>(
+
+        builder: (context, viewModel, child) {
+          if (viewModel.showLoading == true) {
+            return const Center(child: CircularProgressIndicator());
           }
-          if (snapshot.hasError || snapshot.data?.status == 'error') {
+          if (viewModel.errorMessage != null) {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AlertDialog(
-                    title: Text("Error"),
+                    title: const Text("Error"),
                     content:
-                    Text(snapshot.data?.message ?? snapshot.error.toString()),
+                    Text(viewModel.errorMessage ?? ' '),
                     actions: [
                       ElevatedButton(
                         onPressed: ()async {
-                          await ApiManager.getNews(widget.source.id!);
+                          viewModel.getNews(widget.source.id!);
                           setState(() {
 
                           });
                         },
-                        child: Text("Try Again"),
+                        child: const Text("Try Again"),
                       ),
                     ],
                   ),
@@ -48,7 +57,7 @@ class _NewsListWidgetState extends State<NewsListWidget> {
             );
           }
 
-          var newsList = snapshot.data?.articles;
+          var newsList = viewModel.newsList;
           return ListView.builder(
             itemBuilder: (context, index) {
               return NewsWidget(newsList![index]);
@@ -56,7 +65,7 @@ class _NewsListWidgetState extends State<NewsListWidget> {
             itemCount: newsList?.length??0,
           );
         },
+      ),
     );
-
   }
 }

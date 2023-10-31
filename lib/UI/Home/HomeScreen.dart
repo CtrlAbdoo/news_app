@@ -8,6 +8,8 @@ import 'package:news_app/UI/Home/Settings/SettingsFragment.dart';
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'HomeScreen';
 
+  const HomeScreen({super.key});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -21,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: Colors.white,
         image: DecorationImage(
           image:  AssetImage('assets/images/BG.jpg'),
@@ -32,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
           drawer: HomeDrawer(onMenuItemClick),
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.primary,
-            title: Text('News App'),
+            title: const Text('News App'),
             centerTitle: true,
           ),
           body: selectedWidget,
@@ -49,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
         selectedWidget = CategoriesFragment(onCategoryItemClick);
 
       case MenuItem.settings:
-        selectedWidget = SettingsFragment();
+        selectedWidget = const SettingsFragment();
     }
 
     setState(() {

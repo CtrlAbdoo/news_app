@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:news_app/UI/Home/HomeScreen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           iconTheme: IconThemeData(
             color: Colors.white,
           ),
@@ -30,13 +32,13 @@ class MyApp extends StatelessWidget {
           )
         ),
         scaffoldBackgroundColor: Colors.transparent,
-        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF39A552),
-        primary: Color(0xFF39A552),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF39A552),
+        primary: const Color(0xFF39A552),
         ),
         useMaterial3: true,
       ),
       routes: {
-        HomeScreen.routeName :(_) => HomeScreen(),
+        HomeScreen.routeName :(_) => const HomeScreen(),
       },
       initialRoute: HomeScreen.routeName,
     );
