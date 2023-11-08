@@ -10,12 +10,12 @@ class Category{
 
   static List<Category> getAllCategories(){
     return[
-      Category('sports', 'Sports', Color(0xFFC91C22), 'sports.png'),
-      Category('general', 'General', Color(0xFF003E90), 'general.png'),
-      Category('health', 'Health', Color(0xFFED1E79), 'health.png'),
-      Category('business', 'Business', Color(0xFFCF7E48), 'business.png'),
-      Category('technology', 'Technology', Color(0xFF4882CF), 'technology.png'),
-      Category('science', 'Science', Color(0xFFF2D352), 'science.png'),
+      Category('sports', 'Sports', const Color(0xFFC91C22), 'sports.png'),
+      Category('general', 'General', const Color(0xFF003E90), 'general.png'),
+      Category('health', 'Health', const Color(0xFFED1E79), 'health.png'),
+      Category('business', 'Business', const Color(0xFFCF7E48), 'business.png'),
+      Category('technology', 'Technology', const Color(0xFF4882CF), 'technology.png'),
+      Category('science', 'Science', const Color(0xFFF2D352), 'science.png'),
     ];
   }
 }

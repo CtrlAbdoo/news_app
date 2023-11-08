@@ -12,8 +12,8 @@ class CategoryItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: category.color,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(24),
-          topRight: Radius.circular(24),
+          topLeft: const Radius.circular(24),
+          topRight: const Radius.circular(24),
           bottomRight: Radius.circular(index.isEven? 0:24),
           bottomLeft: Radius.circular(index.isEven? 24:0),
         ),
@@ -27,7 +27,7 @@ class CategoryItem extends StatelessWidget {
             fit: BoxFit.fitHeight,
           ),
           Text(category.title,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 22,
               fontFamily: 'Exo',

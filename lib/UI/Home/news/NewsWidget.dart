@@ -23,7 +23,7 @@ class NewsWidget extends StatelessWidget {
                 fit: BoxFit.fill,
                 progressIndicatorBuilder: (context, url, downloadProgress) =>
                     Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
           ),
           Text.rich(
@@ -32,7 +32,7 @@ class NewsWidget extends StatelessWidget {
               children: [
                 TextSpan(
                   text: news.author??'',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color(0xFF79828B),
                     fontSize: 10,
                     fontFamily: 'Poppins',
@@ -44,14 +44,14 @@ class NewsWidget extends StatelessWidget {
           ),
           Text(news.title??'',
             textAlign: TextAlign.start,
-            style: TextStyle(
+            style: const TextStyle(
             color: Color(0xFF42505C),
             fontSize: 14,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w500,
           ),),
           Text(news.publishedAt??'',
-            style: TextStyle(
+            style: const TextStyle(
             color: Color(0xFFA3A3A3),
             fontSize: 13,
             fontFamily: 'Inter',
